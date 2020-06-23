@@ -18,7 +18,7 @@
 
             //On Ready State Change => Function alled When State Change
             myRequest.onreadystatechange = function() {
-                // console.log(this.readyState)
+                console.log(this.status)
 
                 /*
                     Ready State => The Status Of The Request
@@ -31,15 +31,11 @@
                 //If Request Is Finished And Responses Is Ready
                 if (this.readyState === 4 && this.status == 200) {
                     console.log(this.responseText);
-                    // }
+                    console.log(myRequest);
                 }
-                myRequest.open('GET',
-                    'https://api.github.com/users/ElzeroWebSchool/repos',
-                    true
-                );
-
-                myRequest.send();
             };
+            myRequest.open('GET', 'https://api.github.com/users/ElzeroWebSchool/repos', true);
+            myRequest.send();
         };
     </script>
 </body>
