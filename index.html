@@ -8,23 +8,22 @@
 </head>
 
 <body>
-    <button onclick="getRepos()">Get Nmae</button>
+    <button data-page='demo-one.html'>Get Demo One</button>
+    <button data-page='demo-two.html'>Get Demo Two</button>
     <div id="show"></div>
+    <script src="jquery-3.2.1.min.js"></script>
 
     <script>
-        //Make Function To Do The Request
-        function getRepos() {
-            //Assign The Request Object To Variable
-            var myRequest = new XMLHttpRequest();
-
-            myRequest.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status == 200) {
-                    console.log(this.responseText)
-                }
-            };
-            myRequest.open('GET', "auth.php?name=Mohammed", true);
-            myRequest.send();
-        };
+        $(function() {
+            // $("#show").load('mohammed.txt')
+            $('button').on('click', function() {
+                $('#show').load($(this).data("page") + " .content", function(resTxt, stTxt, xhr) {
+                    if (stTxt === 'success') {
+                        console.log("Data Loaded");
+                    }
+                })
+            })
+        })
     </script>
 </body>
 
