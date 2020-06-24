@@ -9,6 +9,7 @@
 
 <body>
     <button onclick="getRepos()">Get Request</button>
+    <div id="show"></div>
 
     <script>
         //Make Function To Do The Request
@@ -16,25 +17,28 @@
             //Assign The Request Object To Variable
             var myRequest = new XMLHttpRequest();
 
-            //On Ready State Change => Function alled When State Change
             myRequest.onreadystatechange = function() {
-                console.log(this.status)
-
-                /*
-                    Ready State => The Status Of The Request
-                    [0]=> Request Not Initalized
-                    [1]=> Serve Connection Established
-                    [2]=>Request Recived
-                    [3]=>Processing Request
-                    [4]=>Request Is Finished And Response Is Ready
-                    */
-                //If Request Is Finished And Responses Is Ready
                 if (this.readyState === 4 && this.status == 200) {
-                    console.log(this.responseText);
-                    console.log(myRequest);
+                    // console.log(this.responseText);
+                    // console.log(JSON.parse(this.responseText));
+                    // console.log(myRequest)
+
+                    //convert ResponseText To Js Object
+                    var myJsObject = JSON.parse(this.responseText),
+                        myText = '';
+
+                    for (var i = 0; i < myJsObject.length; i++) {
+                        // console.log(myJsObject[i]) //سيطبعهم جميعهم
+                        console.log(myJsObject[i].username) //سيطبع الاسم فقط
+                        myText = myText + myJsObject[i].username + "<br>"
+                        console.log(myText);
+                        document.getElementById('show').innerHTML = myText
+
+                    }
+
                 }
             };
-            myRequest.open('GET', 'https://api.github.com/users/ElzeroWebSchool/repos', true);
+            myRequest.open('GET', "object.json", true);
             myRequest.send();
         };
     </script>
