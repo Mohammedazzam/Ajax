@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <button onclick="getRepos()">Get Request</button>
+    <button onclick="getRepos()">Get Nmae</button>
     <div id="show"></div>
 
     <script>
@@ -19,26 +19,10 @@
 
             myRequest.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status == 200) {
-                    // console.log(this.responseText);
-                    // console.log(JSON.parse(this.responseText));
-                    // console.log(myRequest)
-
-                    //convert ResponseText To Js Object
-                    var myJsObject = JSON.parse(this.responseText),
-                        myText = '';
-
-                    for (var i = 0; i < myJsObject.length; i++) {
-                        // console.log(myJsObject[i]) //سيطبعهم جميعهم
-                        console.log(myJsObject[i].username) //سيطبع الاسم فقط
-                        myText = myText + myJsObject[i].username + "<br>"
-                        console.log(myText);
-                        document.getElementById('show').innerHTML = myText
-
-                    }
-
+                    console.log(this.responseText)
                 }
             };
-            myRequest.open('GET', "object.json", true);
+            myRequest.open('GET', "auth.php?name=Mohammed", true);
             myRequest.send();
         };
     </script>
