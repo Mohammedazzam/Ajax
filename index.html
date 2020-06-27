@@ -16,7 +16,14 @@
         $(function() {
             $('button').on('click', function() {
                 $.ajax({
+                    contentType: 'multipart/form-data ', //Content Type For The Request
                     method: 'Post', //Method Used For The Request
+                    cache: false, //Cache The Request,Default Is True
+                    async: false, //Asynchrouns Or No
+                    timeout: 3000, //Timeut For The Request
+                    dataType: 'html', //Data Expected From The Server Response DefUlt Is Intel Guess
+                    username: 'mohammed',
+                    password: '123mmm',
                     URL: 'auth.php', //URL tO sEND The Request, Default Is Current URL
                     data: { //data the Send With Request
                         name: 'osama',
@@ -31,6 +38,11 @@
                         console.log(xhr) //XHR Object
                         console.log(status) //Request Status
                         console.log(error) //Error Message
+
+                    },
+                    complete: function(xhr, status) { //Function To Run When Request Is Complete
+                        console.log(xhr)
+                        console.log(status)
 
                     }
                 })
