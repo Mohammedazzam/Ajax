@@ -29,6 +29,10 @@
                         name: 'osama',
                         lastLogin: '2 Days Ago',
                     },
+                    beforeSend: function(xhr) {
+                        console.log(`Before Send`)
+                    },
+
                     success: function(data, status, xhr) { //function To Run Request Succeeded
                         console.log(data) //Data
                         console.log(status) //Request Status
