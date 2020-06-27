@@ -15,14 +15,27 @@
     <script>
         $(function() {
             $('button').on('click', function() {
-                $.get("auth.php", function(data, status, xhr) {
-                    console.log(data)
-                    console.log(status)
-                    console.log(xhr)
+                $.ajax({
+                    method: 'Post', //Method Used For The Request
+                    URL: 'auth.php', //URL tO sEND The Request, Default Is Current URL
+                    data: { //data the Send With Request
+                        name: 'osama',
+                        lastLogin: '2 Days Ago',
+                    },
+                    success: function(data, status, xhr) { //function To Run Request Succeeded
+                        console.log(data) //Data
+                        console.log(status) //Request Status
+                        console.log(xhr) //XHR Object
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr) //XHR Object
+                        console.log(status) //Request Status
+                        console.log(error) //Error Message
 
+                    }
                 })
             })
-        })
+        });
     </script>
 </body>
 
